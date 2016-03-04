@@ -36,11 +36,11 @@
 #endif
 #include <gtkmmconfig.h>
 #if GTKMM_MAJOR_VERSION==2 && GTKMM_MINOR_VERSION>2
-#include <sigc++/compatibility.h>
 #define GMM_GTKMM_22_24(a,b) b
 #else //gtkmm 2.2
 #define GMM_GTKMM_22_24(a,b) a
 #endif //
+#include <sigc++/functors/mem_fun.h>
 #include "FrameLayerProperty_glade.hh"
 
 FrameLayerProperty_glade::FrameLayerProperty_glade(GlademmData *gmm_data
@@ -457,9 +457,9 @@ FrameLayerProperty_glade::FrameLayerProperty_glade(GlademmData *gmm_data
    vbox6->show();
    hbox18->show();
    FrameLayerProperty->show();
-   check_cooling_mist->signal_toggled().connect(SigC::slot(*this, &FrameLayerProperty_glade::on_check_cooling_mist_toggled), false);
-   button_ok->signal_clicked().connect(SigC::slot(*this, &FrameLayerProperty_glade::on_button_ok_clicked), false);
-   button_cancel->signal_clicked().connect(SigC::slot(*this, &FrameLayerProperty_glade::on_button_cancel_clicked), false);
+   check_cooling_mist->signal_toggled().connect(sigc::mem_fun(*this, &FrameLayerProperty_glade::on_check_cooling_mist_toggled), false);
+   button_ok->signal_clicked().connect(sigc::mem_fun(*this, &FrameLayerProperty_glade::on_button_ok_clicked), false);
+   button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &FrameLayerProperty_glade::on_button_cancel_clicked), false);
 }
 
 FrameLayerProperty_glade::~FrameLayerProperty_glade()

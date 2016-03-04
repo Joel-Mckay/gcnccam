@@ -36,11 +36,11 @@
 #endif
 #include <gtkmmconfig.h>
 #if GTKMM_MAJOR_VERSION==2 && GTKMM_MINOR_VERSION>2
-#include <sigc++/compatibility.h>
 #define GMM_GTKMM_22_24(a,b) b
 #else //gtkmm 2.2
 #define GMM_GTKMM_22_24(a,b) a
 #endif //
+#include <sigc++/functors/mem_fun.h>
 #include "FrameTool_glade.hh"
 
 FrameTool_glade::FrameTool_glade(GlademmData *gmm_data
@@ -181,9 +181,9 @@ FrameTool_glade::FrameTool_glade(GlademmData *gmm_data
    vbox5->show();
    hbox17->show();
    FrameTool->show();
-   entry_tool_number->signal_changed().connect(SigC::slot(*this, &FrameTool_glade::on_entry_tool_number_changed), false);
-   button_ok->signal_clicked().connect(SigC::slot(*this, &FrameTool_glade::on_button_ok_clicked), false);
-   button_cancel->signal_clicked().connect(SigC::slot(*this, &FrameTool_glade::on_button_cancel_clicked), false);
+   entry_tool_number->signal_changed().connect(sigc::mem_fun(*this, &FrameTool_glade::on_entry_tool_number_changed), false);
+   button_ok->signal_clicked().connect(sigc::mem_fun(*this, &FrameTool_glade::on_button_ok_clicked), false);
+   button_cancel->signal_clicked().connect(sigc::mem_fun(*this, &FrameTool_glade::on_button_cancel_clicked), false);
 }
 
 FrameTool_glade::~FrameTool_glade()

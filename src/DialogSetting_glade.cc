@@ -36,11 +36,11 @@
 #endif
 #include <gtkmmconfig.h>
 #if GTKMM_MAJOR_VERSION==2 && GTKMM_MINOR_VERSION>2
-#include <sigc++/compatibility.h>
 #define GMM_GTKMM_22_24(a,b) b
 #else //gtkmm 2.2
 #define GMM_GTKMM_22_24(a,b) a
 #endif //
+#include <sigc++/functors/mem_fun.h>
 #include "DialogSetting_glade.hh"
 #include <gdk/gdkkeysyms.h>
 #include <gtkmm/accelgroup.h>
@@ -587,10 +587,10 @@ DialogSetting_glade::DialogSetting_glade(
    label35->show();
    notebook2->show();
    DialogSetting->show();
-   combo_units->signal_changed().connect(SigC::slot(*this, &DialogSetting_glade::on_combo_units_changed), false);
-   check_tool_change->signal_toggled().connect(SigC::slot(*this, &DialogSetting_glade::on_check_tool_change_toggled), false);
-   check_tool_sensor->signal_toggled().connect(SigC::slot(*this, &DialogSetting_glade::on_check_tool_sensor_toggled), false);
-   check_add_exit_pos->signal_toggled().connect(SigC::slot(*this, &DialogSetting_glade::on_check_add_exit_pos_toggled), false);
+   combo_units->signal_changed().connect(sigc::mem_fun(*this, &DialogSetting_glade::on_combo_units_changed), false);
+   check_tool_change->signal_toggled().connect(sigc::mem_fun(*this, &DialogSetting_glade::on_check_tool_change_toggled), false);
+   check_tool_sensor->signal_toggled().connect(sigc::mem_fun(*this, &DialogSetting_glade::on_check_tool_sensor_toggled), false);
+   check_add_exit_pos->signal_toggled().connect(sigc::mem_fun(*this, &DialogSetting_glade::on_check_add_exit_pos_toggled), false);
 }
 
 DialogSetting_glade::~DialogSetting_glade()

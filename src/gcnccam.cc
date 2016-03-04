@@ -18,9 +18,7 @@
 */
 
 #include <config.h>
-//#include <gnome--/main.h>
-#include <libgnomemm/main.h>
-#include <libgnomeuimm.h>
+#include <gtkmm/main.h>
 #include <glib/gi18n.h>
 
 #include "WindowMain.hh"
@@ -32,10 +30,8 @@ int main(int argc, char **argv)
    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
    textdomain (GETTEXT_PACKAGE);
 #endif //ENABLE_NLS
-   
-   Gnome::Main m(PACKAGE, VERSION, Gnome::UI::module_info_get(), argc, argv);
-WindowMain* window_main = new class WindowMain();
-   m.run(*window_main);
-delete window_main;
+   Gtk::Main kit(argc, argv);
+   WindowMain gcnccam;
+   Gtk::Main::run(gcnccam);
    return 0;
 }

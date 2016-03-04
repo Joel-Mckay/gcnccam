@@ -36,11 +36,11 @@
 #endif
 #include <gtkmmconfig.h>
 #if GTKMM_MAJOR_VERSION==2 && GTKMM_MINOR_VERSION>2
-#include <sigc++/compatibility.h>
 #define GMM_GTKMM_22_24(a,b) b
 #else //gtkmm 2.2
 #define GMM_GTKMM_22_24(a,b) a
 #endif //
+#include <sigc++/functors/mem_fun.h>
 #include "WindowMain_glade.hh"
 #include <gdk/gdkkeysyms.h>
 #include <gtkmm/accelgroup.h>
@@ -563,27 +563,27 @@ WindowMain_glade::WindowMain_glade(
    statusbar1->show();
    vbox1->show();
    WindowMain->show();
-   open_template->signal_activate().connect(SigC::slot(*this, &WindowMain_glade::on_open_template_activate), false);
-   save_template->signal_activate().connect(SigC::slot(*this, &WindowMain_glade::on_save_template_activate), false);
-   open_drawing->signal_activate().connect(SigC::slot(*this, &WindowMain_glade::on_open_drawing_activate), false);
-   save_cnc_file->signal_activate().connect(SigC::slot(*this, &WindowMain_glade::on_save_cnc_file_activate), false);
-   export_tool_file1->signal_activate().connect(SigC::slot(*this, &WindowMain_glade::on_export_tool_file1_activate), false);
-   quit1->signal_activate().connect(SigC::slot(*this, &WindowMain_glade::on_quit1_activate), false);
-   save_template_default->signal_activate().connect(SigC::slot(*this, &WindowMain_glade::on_save_template_default_activate), false);
-   settings->signal_activate().connect(SigC::slot(*this, &WindowMain_glade::on_settings_activate), false);
-   build_cnc_code->signal_activate().connect(SigC::slot(*this, &WindowMain_glade::on_build_cnc_code_activate), false);
-   about->signal_activate().connect(SigC::slot(*this, &WindowMain_glade::on_about_activate), false);
-   button_open_drawing->signal_clicked().connect(SigC::slot(*this, &WindowMain_glade::on_button_open_drawing_clicked), false);
-   button_save_cnc_code->signal_clicked().connect(SigC::slot(*this, &WindowMain_glade::on_button_save_cnc_code_clicked), false);
-   button_build_cnc->signal_clicked().connect(SigC::slot(*this, &WindowMain_glade::on_button_build_cnc_clicked), false);
-   button_layerprop_add->signal_clicked().connect(SigC::slot(*this, &WindowMain_glade::on_button_layerprop_add_clicked), false);
-   button_layerprop_del->signal_clicked().connect(SigC::slot(*this, &WindowMain_glade::on_button_layerprop_del_clicked), false);
-   button_tool_add->signal_clicked().connect(SigC::slot(*this, &WindowMain_glade::on_button_tool_add_clicked), false);
-   button_tool_del->signal_clicked().connect(SigC::slot(*this, &WindowMain_glade::on_button_tool_del_clicked), false);
-   tree_layers->signal_row_activated().connect(SigC::slot(*this, &WindowMain_glade::on_tree_layers_row_activated), false);
-   tree_layerprops->signal_row_activated().connect(SigC::slot(*this, &WindowMain_glade::on_tree_layerprops_row_activated), false);
-   tree_tools->signal_row_activated().connect(SigC::slot(*this, &WindowMain_glade::on_tree_tools_row_activated), false);
-   notebook1->signal_switch_page().connect(SigC::slot(*this, &WindowMain_glade::on_notebook1_switch_page), false);
+   open_template->signal_activate().connect(sigc::mem_fun(*this, &WindowMain_glade::on_open_template_activate), false);
+   save_template->signal_activate().connect(sigc::mem_fun(*this, &WindowMain_glade::on_save_template_activate), false);
+   open_drawing->signal_activate().connect(sigc::mem_fun(*this, &WindowMain_glade::on_open_drawing_activate), false);
+   save_cnc_file->signal_activate().connect(sigc::mem_fun(*this, &WindowMain_glade::on_save_cnc_file_activate), false);
+   export_tool_file1->signal_activate().connect(sigc::mem_fun(*this, &WindowMain_glade::on_export_tool_file1_activate), false);
+   quit1->signal_activate().connect(sigc::mem_fun(*this, &WindowMain_glade::on_quit1_activate), false);
+   save_template_default->signal_activate().connect(sigc::mem_fun(*this, &WindowMain_glade::on_save_template_default_activate), false);
+   settings->signal_activate().connect(sigc::mem_fun(*this, &WindowMain_glade::on_settings_activate), false);
+   build_cnc_code->signal_activate().connect(sigc::mem_fun(*this, &WindowMain_glade::on_build_cnc_code_activate), false);
+   about->signal_activate().connect(sigc::mem_fun(*this, &WindowMain_glade::on_about_activate), false);
+   button_open_drawing->signal_clicked().connect(sigc::mem_fun(*this, &WindowMain_glade::on_button_open_drawing_clicked), false);
+   button_save_cnc_code->signal_clicked().connect(sigc::mem_fun(*this, &WindowMain_glade::on_button_save_cnc_code_clicked), false);
+   button_build_cnc->signal_clicked().connect(sigc::mem_fun(*this, &WindowMain_glade::on_button_build_cnc_clicked), false);
+   button_layerprop_add->signal_clicked().connect(sigc::mem_fun(*this, &WindowMain_glade::on_button_layerprop_add_clicked), false);
+   button_layerprop_del->signal_clicked().connect(sigc::mem_fun(*this, &WindowMain_glade::on_button_layerprop_del_clicked), false);
+   button_tool_add->signal_clicked().connect(sigc::mem_fun(*this, &WindowMain_glade::on_button_tool_add_clicked), false);
+   button_tool_del->signal_clicked().connect(sigc::mem_fun(*this, &WindowMain_glade::on_button_tool_del_clicked), false);
+   tree_layers->signal_row_activated().connect(sigc::mem_fun(*this, &WindowMain_glade::on_tree_layers_row_activated), false);
+   tree_layerprops->signal_row_activated().connect(sigc::mem_fun(*this, &WindowMain_glade::on_tree_layerprops_row_activated), false);
+   tree_tools->signal_row_activated().connect(sigc::mem_fun(*this, &WindowMain_glade::on_tree_tools_row_activated), false);
+   notebook1->signal_switch_page().connect(sigc::mem_fun(*this, &WindowMain_glade::on_notebook1_switch_page), false);
 }
 
 WindowMain_glade::~WindowMain_glade()

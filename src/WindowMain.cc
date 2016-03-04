@@ -42,6 +42,7 @@ WindowMain::WindowMain() :WindowMain_glade()
 	
 	m_active_frame=frame_default;
 	m_tools=new ToolList();
+        m_layers=0;
 	m_layerprops = new LayerPropertyList(m_tools);
 	loadImages();
 	loadConfig();
